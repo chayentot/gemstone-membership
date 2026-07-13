@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemstone Rewards</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Gemstone Rewards</h1>
+      <p>Choose a gemstone membership and claim daily reward points.</p>
+    </div>
+    <nav>
+      <button class="nav-btn" data-view="memberships">Memberships</button>
+      <button class="nav-btn" data-view="dashboard">Dashboard</button>
+      <button class="nav-btn" data-view="admin">Admin</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="notice" class="notice hidden"></section>
+
+    <section id="memberships" class="view active">
+      <div class="section-heading">
+        <div>
+          <h2>Gemstone Memberships</h2>
+          <p>Your membership becomes active immediately after registration.</p>
+        </div>
+      </div>
+      <div id="membershipGrid" class="membership-grid"></div>
+    </section>
+
+    <section id="register" class="view">
+      <div class="panel narrow">
+        <button class="back-link" data-view="memberships">← Back</button>
+        <h2>Register Membership</h2>
+        <div id="selectedPlanSummary" class="selected-plan"></div>
+        <form id="registerForm">
+          <label>Full name
+            <input id="fullName" required maxlength="80" />
+          </label>
+          <label>Email
+            <input id="email" type="email" required maxlength="120" />
+          </label>
+          <label>Mobile number
+            <input id="mobile" required maxlength="30" />
+          </label>
+          <label>Create a 4–8 digit PIN
+            <input id="pin" type="password" inputmode="numeric" pattern="[0-9]{4,8}" required />
+          </label>
+          <input id="selectedPlanId" type="hidden" />
+          <button class="primary full" type="submit">Register and Activate</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="dashboard" class="view">
+      <div id="loginPanel" class="panel narrow">
+        <h2>Member Login</h2>
+        <form id="loginForm">
+          <label>Email
+            <input id="loginEmail" type="email" required />
+          </label>
+          <label>PIN
+            <input id="loginPin" type="password" inputmode="numeric" required />
+          </label>
+          <button class="primary full" type="submit">Open Dashboard</button>
+        </form>
+      </div>
+
+      <div id="memberPanel" class="hidden">
+        <div class="dashboard-head">
+          <div>
+            <p class="eyebrow">Welcome</p>
+            <h2 id="memberName">Member</h2>
+          </div>
+          <button id="logoutBtn" class="secondary">Log out</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card gemstone-card">
+            <span class="stat-label">Active gemstone</span>
+            <strong id="activeStone">—</strong>
+            <span id="membershipStatus">Active</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Point balance</span>
+            <strong id="pointBalance">0</strong>
+            <span>points</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Claims completed</span>
+            <strong id="claimProgress">0 / 0</strong>
+            <span>daily claims</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Daily reward</span>
+            <strong id="dailyReward">0</strong>
+            <span>points per claim</span>
+          </article>
+        </div>
+
+        <div class="panel claim-panel">
+          <p class="eyebrow">Next daily claim</p>
+          <div id="countdown" class="countdown">24:00:00</div>
+          <p id="claimMessage">Your timer is running.</p>
+          <button id="claimBtn" class="primary" disabled>Claim Points</button>
+        </div>
+
+        <div class="panel">
+          <h3>Claim history</h3>
+          <div id="claimHistory" class="history-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="admin" class="view">
+      <div id="adminLoginPanel" class="panel narrow">
+        <h2>Admin Access</h2>
+        <p class="muted">Use the admin token configured in Google Apps Script.</p>
+        <form id="adminLoginForm">
+          <label>Admin token
+            <input id="adminToken" type="password" required />
+          </label>
+          <button class="primary full" type="submit">Open Admin</button>
+        </form>
+      </div>
+
+      <div id="adminPanel" class="hidden">
+        <div class="dashboard-head">
+          <div>
+            <p class="eyebrow">Administration</p>
+            <h2>Member Management</h2>
+          </div>
+          <button id="adminLogoutBtn" class="secondary">Log out</button>
+        </div>
+        <div class="panel">
+          <button id="refreshAdminBtn" class="secondary">Refresh members</button>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Gemstone</th>
+                  <th>Points</th>
+                  <th>Claims</th>
+                  <th>Next claim</th>
+                  <th>Perk note</th>
+                </tr>
+              </thead>
+              <tbody id="adminMembersBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Reward points are promotional loyalty points and are not cash or investment returns.
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

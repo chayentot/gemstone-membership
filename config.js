@@ -1,1 +1,1 @@
-window.APP_CONFIG={API_URL:'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'};
+window.APP_CONFIG={API_URL:'https://script.google.com/macros/s/AKfycbw9zv-OSl3WqAFjr3dF-NlZ0Vf1Aep6Aup64kCFWSY1K1_QrLqZm9rxxn4cOf40TzNt/exec'};

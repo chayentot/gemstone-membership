@@ -1,3 +1,9 @@
+console.log({
+  fullName: document.getElementById("regName").value,
+  email: document.getElementById("regEmail").value,
+  mobile: document.getElementById("regMobile").value,
+  password: document.getElementById("regPassword").value
+});
 const PLANS=[['quartz','Quartz',500,30,30,'💎'],['amethyst','Amethyst',1000,40,50,'🔮'],['garnet','Garnet',3000,110,50,'♦️'],['aquamarine','Aquamarine',7000,240,50,'🧊'],['sapphire','Sapphire',15000,500,50,'🔷'],['emerald','Emerald',25000,858,50,'🟢']];
 const $=x=>document.getElementById(x),state={token:localStorage.memberToken||'',data:null,timer:null};
 async function api(action,payload={},token=''){const u=APP_CONFIG.API_URL;if(!u||u.includes('PASTE_'))throw Error('Set the Apps Script URL in config.js');const r=await fetch(u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,payload,token})});const j=await r.json();if(!j.ok)throw Error(j.error);return j.data}
